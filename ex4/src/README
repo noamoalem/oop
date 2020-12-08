@@ -1,0 +1,68 @@
+noamoa
+
+
+=============================
+=      File description     =
+=============================
+ClosedHashSet.java - Include closed hash set implementation..
+OpenHashSet.java - Include open hash set implementation.
+OpenHashingBucket.java - Include the buckets for the open hash set.
+CollectionFacadeSet.java - Include the CollectionFacadeSet class.
+SimpleHashSet.java - Include the SimpleHashSet class.
+SimpleSetPerformanceAnalyzer.java - Include the lSimpleSetPerformanceAnalyzer class.
+
+=============================
+=          Design           =
+=============================
+In the class OpenHashSet i choose to implement the open-hashing set using a wrapper-class that has a
+LinkedList<String> and delegates methods to it, and creat an array of that object (OpenHashingBucket) in the
+class.
+In the interface SimpleSet i choose to change the method capacity() to be non abstract because it do the
+exactly same thing in each of the places that it called.
+
+=============================
+=  Implementation details   =
+=============================
+In the class CloseHashSet i choose to solve the problem of deleting item from the array and still know that
+there was something before in this way: i created flag object that each time string was delete the flag were
+put there, and then while searching for item if it would occurs the flag it will kno to keep searching.
+
+=============================
+=    Answers to questions   =
+=============================
+-OpenHashSet bad results for data1.txt:
+The contain of -13170890158
+
+-ClosedHashSets bad results for data1.txt:
+The adding of data1.txt
+
+-Summarize the strengths and weaknesses of each of the data structures as reflected by the results.
+Which would you use for which purposes?
+strengths:
+OpenHashSet - finding items, adding items one by one with the same hashcode.
+ClosedHashSet - finding items, adding items one by one (while their hashcode distributed more or
+less uniformly).
+treeSet - finding items, adding items one by one with the same hashcode.
+hashSet - finding items, adding items one by one.
+
+weaknesses:
+OpenHashSet - adding items one by one (while their hashcode distributed more or less uniformly)
+ClosedHashSet - adding items one by one with the same hashcode.
+treeSet - adding items one by one.
+linkedList - adding items one by one, finding items.
+
+if my main purpose is to find items i would use hashSet(if i dont need to iterate on it) / OpenHashSet /
+ClosedHashSet.
+if i just need to load items, and adding items at the end or that i need to iterate then i would use treeSet /
+linkedList.
+
+-How did your two implementations compare between themselves?
+in adding the strings from data1.txt the openHashSet was much faster, and in adding the strings from
+data2.txt the ClosedHashSet was much faster, the contain operation of both was similar.
+
+-How did your implementations compare to Java built in HashSet?
+In adding both data1.txt and data2.txt, and the contain(-13170890158) Java built in HashSet did better.
+but in finding hi, and 23 the result were pretty close.
+
+-Did you  nd java HashSet performance on data1.txt surprising? Can you explain it?
+Yes! it took way less time to add all the strings in data1.txt to the java hashSet.
