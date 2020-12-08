@@ -1,0 +1,40 @@
+These are Evyatar's tests from Google Drive, adapted to be run directly via JUnit (in IntelliJ) rather than Python.
+This will allow you to debug your program more easily, as well as use IntelliJ's built in diffing tool while debugging
+errors.
+
+These should work on both Windows and Linux(haven't tested on Mac, I assume it should work there too).
+Note that 4 tests were disabled for non-Windows OS (they use a windows only hidden attribute) - in that case, you'll get
+a special failing test indicating so. (It doesn't mean an error on your code, it only serves as a remainder to run the
+tests on Windows too)
+
+== Installation ==
+These assume you're using IntelliJ.
+
+Drop all included files into your project's test directory, so it should look like this:
+
+evyatar_tester/
+tests/
+src/
+src/filesprocessing/DirectoryProcessor.java     - this file must exist, and this class MUST BE PUBLIC, the 'main' method
+                                                  MUST BE PUBLIC as well.
+
+Then, you'll need to configure 'tests' as a test directory, do so as follows:
+
+File -> Project Structure -> Modules
+under the 'Sources' tab, you should see your project's file tree. Right click 'tests' and choose 'tests'
+Now, the tests icon should become green.
+
+Moreover, you'll need to install 2 libraries for JUnit 5, do as follows:
+File -> Project Structure -> Libraries > + > From Maven
+paste the following:
+org.junit.jupiter:junit-jupiter:5.4.2
+then press "OK"
+
+then, repeat the same, using the following:
+org.junit.jupiter:junit-jupiter-params:5.4.2
+
+
+Now, everything should be ready to work
+
+== Running ==
+Right click 'tests' and click "Run 'all tests'".

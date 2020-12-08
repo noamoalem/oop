@@ -1,0 +1,59 @@
+noamoa
+
+
+=============================
+=      File description     =
+=============================
+filesprocessing package include:
+    DirectoryProcessor.java - include the main.
+    SectionCreatAndPlay.java - include the SectionCreatAndPlay class.
+    SectionFactory.java - include the SectionFactory class.
+    TypeTwoException.java - include the Type Two Exception.
+filter package include:
+    FilterFactory.java - include FilterFactory class.
+    nameFilter.java - include NameFilter class.
+    PermissionFilter.java - include PermissionFilter class.
+    SizeFilter.java - include SizeFilter class.
+    TypeOneExceptionFilter.java - include TypeOneExceptionFilter.
+order package include:
+    OrderFactory.java - include OrderFactory class.
+    MergeSort.java - include merge sort algorithm.
+    AlphabetOrder.java - include AlphabetOrder class.
+    SizeOrder.java - include SizeOrder class.
+    TypeOrder.java - include TypeOrder class.
+    TypeOneExceptionOrder.java - include TypeOneExceptionOrder.
+
+=============================
+=          Design           =
+=============================
+I choose to creat two separate packages for the filters and order.
+For each group of reheated filters i choose to creat separate class.
+i creat an FilterFactory class that creat the required filter, and with the method filtered activate the required
+filter on the filtered files array.
+For each order i choose to creat comparator and implement the method compareTo.
+i creat an OrderFactory class that creat the required order, and with the method play activate the required
+order on the filtered files array.
+in the package filesprocessing i put the DirectoryProcessor that is the driver of the program.
+for each section in the command file the constructor of DirectoryProcessor uses the method creatAllSections in
+SectionFactory to creat an array of all section, and then activate them using the method playALL.
+=============================
+=  Implementation details   =
+=============================
+Exceptions hierarchy:
+For the type one exception i choose to check them when trying to creat the relevant filter/order,
+and throw exception if type one error happened.
+i catch this exception while trying to creat the section object and then print the warning,
+and keep in the program.
+For the type two exception i choose to check them when initialized the DirectoryProcessor object, reading
+the command files and the files from the source directory.
+i catch this exception in the method playDirectoryProcessor the is the driver of the program,
+and handle them there by printing the error message and end the program.
+
+=============================
+=    Answers to questions   =
+=============================
+3. Sort algorithm:
+I choose to use merge sort to order the files because its efficient algorithm.
+The merge sort algorithm gets comparator object and do the sort according to that.
+I used List data structure in order to use the merge sort because the way that i know to implement merge sort
+is using list.
