@@ -1,0 +1,51 @@
+noamoa
+
+
+=============================
+=      File description     =
+=============================
+Spaceship.java - Include the spaceship class.
+SpaceshipTest.java - Include the spaceship class tests.
+Locker.java - Include the locker class.
+LockerTest.java - Include the locker class tests.
+LongTermStorage.java - Include the long-term storage class.
+LongTermTest.java - Include the long-term storage class tests.
+BoopingSite.java - Include the BoopingSite class.
+BoopingSiteTest.java - Include the boopingSite class tests.
+SpaceshipDepositoryTest.java - Include all the tests of locker, long-term storage and spaceship class.
+SortByRating.java - include compare method, to sort by rating.
+SortByProximity.java - include compare method, to sort by proximity.
+
+=============================
+=          Design           =
+=============================
+In the classes Locker and SpaceShip i choose to creat a LongTermStorage object,
+because each locker need to be related to one long term object so items will pass their while needed.
+each spaceship has a long therm storage so this why i choose to do like so.
+
+I choose to creat two class SortByProximity, SortByRating their both implement the interface
+Comparator of hotel objects, either one of them implements the method compare of hotel objects, according
+to different characteristic.
+
+=============================
+=  Implementation details   =
+=============================
+I choose to the class locker the methods moveToLong that check if items need to move to the long term storage.
+and the method checkConstraint the finds if two items can be in the same locker.
+
+I choose to implement the method getHotelsInCityByRating using the method compare of class sortByRating.
+at first i select only he hotels that in the given city, and then sorting them according to their rating withe
+bubble sort, and using the method compare of class sortByRating.
+For the test of this method i choose to use the file hotels dataset.txt because it has hotel from different
+cites.
+
+To implement the methods getHotelsByProximit, getHotelsInCityByProximity i created the class sortByProximity
+and use bubble sort and the method compare of that class.
+For the test of this methods i choose to use both of the given files because one has hotel from different
+cites so i could see that i gives only hotels in specific city, and with the other one i cloud check that
+even if the hotels close ti each other it still works.
+
+
+=============================
+=    Answers to questions   =
+=============================
