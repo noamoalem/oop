@@ -1,0 +1,145 @@
+noamoa
+nir_amzaleg
+
+Ex 6 - Simplified Java Verifier
+
+=============================
+=      File description     =
+=============================
+
+oop.ex6.main.Sjavac.java - This class is the main class that responsible for the compiling the given
+source file and check if it valid.
+
+oop.ex6.main.Reader.java - This is the class the responsible for the reading from the source file,
+using the buffer system, by first scan that update the methods and the global vars.
+This class also responsible for raising the IO reading Error.
+
+oop.ex6.main.ErrorSjava.java - This is the exception class.
+
+--ComplexLine sub package--
+
+ComplexLine.java - An interface for all the ComplexLine objects (if/while or method)
+that force them to implements the validbody and  valid function that raise error
+if this line (block actually) is illegal.
+
+Method.java - Class that represent the valid checker of full scoop of a method, implements the
+ComplexLine interface. Raise an error if something went wrong in the method.
+
+Statement.java - Class that represent the valid checker of full scoop of a if/while statement, implements the
+ComplexLine interface. Raise an error if something went wrong in the statement.
+
+Var.java - Class that represent a variable, that can be global/local, assigned or not and final or not, save the
+variable name and type.
+
+--Simpleline subpackage--
+
+SimpleLine.java - An interface for all the SimpleLine objects (not if/while or method)
+that force them to implements the valid function that raise error if this line is illegal.
+
+CommentLine.java - This class represent the valid checker of a comment line that should start with //,
+and throw error otherwise.
+
+Conditions.java - This class represent the valid checker of a condition (in while/if statement) that
+should start with '(' end with ')' and have a boolean value (boolean, int
+or double), and throw error otherwise.
+
+FunctionCall.java - This class represent the valid checker of a function call line that
+should call valid method, with the correct number and types of arguments and throw error otherwise.
+
+Return.java - This class represent the valid checker of a return line that should
+contains only return and ';' , and throw error otherwise.
+
+SimpleVar.java - This class represent the valid checker of a Variable line (deceleration and/or assigment)
+line that and throw error if it illegal.
+
+Methods.java - This class represent a valid Method and save its attributes.
+
+Variable.java - This class represent a valid Variable and save its attributes.
+
+------------------------
+opp.ex6.Line.java -  An interface for all the line, that force each class that implement it to implement the
+valid method, that throws error if the line invalid.
+README - This file.
+
+=============================
+=          Design           =
+=============================
+
+Packages division system -
+
+As we have asked, We created one super Package named oop.ex6 package, in it
+there are 3 SubPackages:
+
+ -- main SubPackage--
+The main of the program that contains the Sjavac class that run the compiling
+process and the Reader class that scan and check each line in the source file.
+
+
+ --complexline SubPackage -
+The classes that represent any ComplexLine as if/while/method scoop.
+
+ --simpleline SubPackage -
+The classes that represent any simpleline everything that is not  if/while/method scoop.
+
+
+=============================
+=  Implementation details   =
+=============================
+We choose first to make a first scan to update the Global Variables and
+all the methods in the file.
+After that, we check each scoop that may contains another scoop (with recursion)
+and/or simple lines as return or comment line.
+If at least one of the line is invalid the Sjavac will get error with informative message
+and then it will print 1 and the informative message, otherwise no error was thrown and
+0 will be printed.
+By checking each line validness we divided our program to small parts that check only
+one line each time mostly by using some Regular Expressions that check if the line format is correct.
+
+Another way to deal with the problem is creating the all REGEX that each one is a
+specific format of valid line from specific type (e.g. final local variable and none final local variable
+should have different REGEX).
+
+Another problem we face with was the assigment of global vars in local scope. To make sure that the
+assigment will effect only the current and dipper scopes, we choose to make a deep copy of the array,
+in each recursive call, that prevents any problem with the Vars objects.
+
+=============================
+=    Answers for questions   =
+=============================
+
+1. We didn't choose to use tools that not discussed in the course materials.
+
+2. We handled with s-java code errors by throwing them from the first valid checker that
+find problem in the file, this error going back to the main class (Sjavac) with informative
+message that it gets from the valid checker that failed and then print 1 and the informative massage.
+Its help us to debug the code very fast.
+
+--Question--
+How would you modify your code to add new types of variables (e.g., float)?
+--Answer--
+We will have to change the SimpleVar class valid checker, and add to all the REGEX that
+works with Variables |flout| and add only one method that check valid constant float (start with f and more..)
+
+--Question--
+Describe which modifications/extensions you would have to make in your code
+in order to support a. classes  b. Different methods’ types?
+--Answer--
+a. Class- in fact, class is kind of complexline that very similar to method. Therefor, we should
+create a new class - class that implements complex line and it valid checker
+will be checking it first line with fitted REGEX and creating method checker for each
+method of this class and check it validness.
+
+b.  Different methods’ types -- will force us to update the first line of method, and the return line REGEX
+and the return valid checker should check if we return object with correct type.
+
+--Describe REGEX--
+"([a-zA-Z]+\\w*|_\\w+)" - This is regex of valid name while name is any sequence (length > 0) of
+letters (uppercase or lowercase)[a-zA-Z]+, digits and the underscore character , name may not start
+with a digit. Name may start with an underscore, but in such a case it must contain at least one
+more character and that is the option that after the | .
+
+
+"(\\s)*(void)(\\s)+([a-zA-Z]+\\w*|_\\w+)(\\s)*(\\()(\\s*(int|String|boolean|char|double)(\\s+)
+([a-zA-Z]+\\w*|_\\w+)(\\s)*(\\,?))*(\\s)*(\\))(\\s)*(\\{)(\\s)*"  - This is regex of valid first line of
+method that should start with void, have a valid name then ( and then type and argument names,
+that should be valid) and the ) and {.
