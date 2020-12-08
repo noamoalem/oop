@@ -1,0 +1,52 @@
+noamoa
+
+
+=============================
+=      File description     =
+=============================
+Spongebob's_House.gif -  The image of the special spaceship with an active shield.
+SpongeBob.gif - The image of the special spaceship.
+Special.java - Include the special spaceship class.
+Drunkard.java - Include the drunkard spaceship class.
+Aggressive.java - Include the aggressive spaceship class.
+Basher.java - Include the basher spaceship class.
+Runner.java - Include the runner spaceship class.
+HumanControlled.java - Include the human controlled spaceship class.
+SpaceShip.java - Include the abstract spaceship class.
+SpaceShipFactory.java - Include the SpaceShipFactory class that create all the spaceship objects according
+to the command line arguments.
+
+=============================
+=          Design           =
+=============================
+I choose to implement the SpaceShip class as a abstract class, and the different types of spaceships are
+sub-classes of the SpaceShip class.
+I choose to do the SpaceShip class abstract because the game does not include a "regular" spaceship (so we
+dont need to creat "regular" spaceship object, and this class can be abstract).
+Each spaceship has it own characteristics, but still all of the spaceships has something in common
+(like the ability to fire, teleport, put shield, the energy counter and more).
+The behavior of each spaceship during the game is different, so i decided to make the doAction method of
+each one of the spaceships different, but all of the common action that take place in every round (like the
+current energy that goes up) for all of the different spaceships i put in the doAction of the super class
+and they all uses that.
+
+=============================
+=  Implementation details   =
+=============================
+To the class SpaceShip i choose to add the methods shieldOff - in order to remove the shield while needed,
+and checkDistanceIsSmaller - because in a several different classes i wan needed to check if the distance
+between two spaceships is smaller then a given units number.
+
+
+=============================
+=    Answers to questions   =
+=============================
+- The drunkard spaceship behavior i choose to implement is that this ship will always accelerate, when it
+gets closer to another spaceship by 0.20 units, it randomly do one of 6 action: do nothing, turn right,
+turn left, teleport, fire or put the shield on, according to random number.
+
+- To the special spaceship implementation i choose the character of spongebob, and the shield is spongebob
+pineapple house.
+The behavior i choose to do is that it constantly turn left so it seems like he hover in space.
+when it gets closer to another spaceship by 0.25 units, he feels threatened it put the shield on
+(go inside his house) for 40 rounds, fire and turn away from the other spaceship.
